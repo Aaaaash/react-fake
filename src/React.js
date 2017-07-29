@@ -1,7 +1,7 @@
 import instantiateReactComponent from './instantiateReactComponent';
 import ReactElement from './ReactElement';
 
-export default class React {
+class React {
   constructor () {
     this.nextReactRootIndex = 0
   }
@@ -48,3 +48,4 @@ export default class React {
   }
 }
 
+export default new React();

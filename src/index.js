@@ -1,11 +1,11 @@
 import React from './React';
 
-const newComponent = new React();
+// const newComponent = new React();
 
 function hello(){
   alert('hello')
 }
-const ele = newComponent.component(
+const ele = React.component(
   'div',
   {
     id: 'test',
@@ -14,7 +14,7 @@ const ele = newComponent.component(
   'click me!',
 );
 
-newComponent.render(
+React.render(
   ele,
   document.querySelector('#root')
 );
