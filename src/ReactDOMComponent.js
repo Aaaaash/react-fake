@@ -24,7 +24,14 @@ export default class ReactDOMComponent {
         // 事件委托 将所有事件绑定到document上
         $(document).delegate('[data-reactid="' + this._rootNodeID + '"]', eventType + '.' + this._rootNodeID, props[propKey]);
       }
-
+      if (propKey === 'style' && typeof props[propKey] === 'object') {
+        let styleStart = 'style="';
+        const styleEnd = '"';
+        for (let css in props[propKey]) {
+          styleStart += `${css.replace(/([A-Z])/g,"-$1").toLowerCase()}: ${props[propKey][css]};`;
+        }
+        tagOpen += ` ${styleStart}${styleEnd}`;
+      }
       if (props[propKey] && propKey !== 'children' && !/^on[A-Za-z]/.test(propKey)) {
         tagOpen += ` ${propKey}=${props[propKey]}`;
       }

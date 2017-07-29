@@ -10,11 +10,16 @@ const ele = React.component(
   {
     id: 'test',
     onclick: hello,
+    style: {
+      width: '100px',
+      height: '200px',
+      backgroundColor: '#FF004F',
+    }
   },
   'click me!',
 );
 
-React.render(
+React.renderDOM(
   ele,
   document.querySelector('#root')
 );

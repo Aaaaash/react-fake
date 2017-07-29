@@ -5,7 +5,8 @@ class React {
   constructor () {
     this.nextReactRootIndex = 0
   }
-  render (ele, container) {
+
+  renderDOM (ele, container) {
     const componentInstance = instantiateReactComponent(ele);
     const markup = componentInstance.mountComponent(this.nextReactRootIndex++);
     container.innerHTML = markup;
