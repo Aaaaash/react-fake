@@ -32,7 +32,12 @@ export default class ReactDOMComponent {
         }
         tagOpen += ` ${styleStart}${styleEnd}`;
       }
-      if (props[propKey] && propKey !== 'children' && !/^on[A-Za-z]/.test(propKey)) {
+      if (
+        props[propKey]
+        && propKey !== 'children'
+        && !/^on[A-Za-z]/.test(propKey)
+        && propKey !== 'style'
+      ) {
         tagOpen += ` ${propKey}=${props[propKey]}`;
       }
     }
