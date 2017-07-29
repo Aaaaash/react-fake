@@ -1,3 +1,6 @@
+import PureComponent from './PureComponent';
+import instantiateReactComponent from './instantiateReactComponent';
+
 export default class ReactCompositeComponent  {
   constructor(ele) {
     this._currentElement = ele;
@@ -11,7 +14,7 @@ export default class ReactCompositeComponent  {
     const ReactClass = this._currentElement.type;
     const inst = new PureComponent(publicProps);
     this._instance = inst;
-
+    console.log(inst);
     inst._reactInternalInstance = this;
 
     if (inst.componentWillMount) {
@@ -22,7 +25,7 @@ export default class ReactCompositeComponent  {
     const renderedComponentInstance = instantiateReactComponent(renderedElement);
     this._renderedComponent = renderedComponentInstance;
 
-    const renderedMarkup =renderedComponentInstance.mountComponent(this._rootNodeID);
+    const renderedMarkup = renderedComponentInstance.mountComponent(this._rootNodeID);
 
     $(document).on('mountReady', function() {
       //调用inst.componentDidMount

@@ -1,5 +1,6 @@
 import instantiateReactComponent from './instantiateReactComponent';
 import ReactElement from './ReactElement';
+import PureComponent from './PureComponent';
 
 class React {
   constructor () {
@@ -12,14 +13,19 @@ class React {
     container.innerHTML = markup;
   }
 
-  cleateClass (spec) {
-    const Constructor = (props) => {
-      this.props = props;
-      this.state = this.getInitialState ? this.getInitialState() : null;
+  createClass (spec) {
+    class Constructor {
+      constructor(props) {
+        this.props = props;
+        this.state = this.getInitialState ? this.getInitialState() : null;
+      }
     }
+
     Constructor.prototype = new PureComponent();
     Constructor.prototype.constructor = Constructor;
     Object.assign(Constructor.prototype, spec);
+    // console.log(Object.assign(Constructor.prototype, spec));
+    // console.log(PureComponent.prototype);
     return Constructor;
   }
   component (type, config = {}, children) {

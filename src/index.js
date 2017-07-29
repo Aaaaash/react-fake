@@ -5,6 +5,8 @@ import React from './React';
 function hello(){
   alert('hello')
 }
+
+// DOM组件测试
 const ele = React.component(
   'button',
   {
@@ -25,7 +27,27 @@ const ele = React.component(
   'react按钮',
 );
 
+const ele2 = React.createClass({
+  getInitialState: () => {
+    return { type: 'say:' };
+  },
+  componentWillMount: () => {
+    console.log('我就要开始渲染了。。。');
+  },
+  componentDidMount: () => {
+    console.log('渲染完了');
+  },
+  render: () => React.component(
+    "div", null, this.state.type, "Hello ", this.props.name
+  )
+});
+
+const Hello = React.component(
+  ele2,
+  { name: 'Sakura' },
+);
+
 React.renderDOM(
-  ele,
+  Hello,
   document.querySelector('#root')
 );
