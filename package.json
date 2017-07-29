@@ -19,6 +19,7 @@
     "eventsource-polyfill": "^0.9.6",
     "express": "^4.15.3",
     "html-webpack-plugin": "^2.29.0",
+    "jquery": "^3.2.1",
     "webpack": "^3.4.1",
     "webpack-dev-middleware": "^1.11.0",
     "webpack-dev-server": "^2.6.1",
