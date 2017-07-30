@@ -8,7 +8,6 @@ export default function instantiateReactComponent (node) {
   }
   
   if (typeof node === 'object' && typeof node.type === 'string') {
-    console.log(node);
     return new ReactDOMComponent(node);
   }
 

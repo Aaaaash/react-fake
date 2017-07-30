@@ -1,5 +1,6 @@
 import PureComponent from './PureComponent';
 import instantiateReactComponent from './instantiateReactComponent';
+import $ from 'jquery';
 
 export default class ReactCompositeComponent  {
   constructor(ele) {
@@ -12,11 +13,10 @@ export default class ReactCompositeComponent  {
     this._rootNodeID = rootID;
     const publicProps = this._currentElement.props;
     const ReactClass = this._currentElement.type;
-    const inst = new PureComponent(publicProps);
+    const inst = new ReactClass(publicProps);
     this._instance = inst;
-    console.log(inst);
-    inst._reactInternalInstance = this;
 
+    inst._reactInternalInstance = this;
     if (inst.componentWillMount) {
       inst.componentWillMount();
     }

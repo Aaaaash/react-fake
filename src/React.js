@@ -1,6 +1,7 @@
 import instantiateReactComponent from './instantiateReactComponent';
 import ReactElement from './ReactElement';
 import PureComponent from './PureComponent';
+import $ from 'jquery';
 
 class React {
   constructor () {
@@ -11,32 +12,45 @@ class React {
     const componentInstance = instantiateReactComponent(ele);
     const markup = componentInstance.mountComponent(this.nextReactRootIndex++);
     container.innerHTML = markup;
+    $(document).trigger('mountReady');
   }
 
   createClass (spec) {
-    class Constructor {
+    // var Constructor = function (props) {
+    //   this.props = props;
+    //   this.state = this.getInitialState ? this.getInitialState() : null;
+    // }
+    // //原型继承，继承超级父类
+    // Constructor.prototype = new PureComponent();
+    // Constructor.prototype.constructor = Constructor;
+    // //混入spec到原型
+    // $.extend(Constructor.prototype,spec);
+    // return Constructor;
+    class Constructor extends PureComponent {
       constructor(props) {
+        super();
         this.props = props;
         this.state = this.getInitialState ? this.getInitialState() : null;
       }
     }
-
-    Constructor.prototype = new PureComponent();
+    // Constructor.prototype = new PureComponent();
     Constructor.prototype.constructor = Constructor;
     Object.assign(Constructor.prototype, spec);
     // console.log(Object.assign(Constructor.prototype, spec));
     // console.log(PureComponent.prototype);
     return Constructor;
   }
-  component (type, config = {}, children) {
+  createElement (type, config, children) {
+    debugger;
     const props = {};
+    const conf = config || {};
     let propName;
-    let key = config.key || null;
+    let key = conf.key || null;
 
     // 复制config里的内容到props对象
-    for (propName in config) {
-      if (config.hasOwnProperty(propName) && propName !== 'key') {
-        props[propName] = config[propName];
+    for (propName in conf) {
+      if (conf.hasOwnProperty(propName) && propName !== 'key') {
+        props[propName] = conf[propName];
       }
     }
 

@@ -7,7 +7,7 @@ function hello(){
 }
 
 // DOM组件测试
-const ele = React.component(
+const ele = React.createElement(
   'button',
   {
     id: 'btn',
@@ -28,23 +28,25 @@ const ele = React.component(
 );
 
 const ele2 = React.createClass({
-  getInitialState: () => {
-    return { type: 'say:' };
+  getInitialState: function() {
+    return {type: 'say:'};
   },
-  componentWillMount: () => {
-    console.log('我就要开始渲染了。。。');
+  componentWillMount: function() {
+    console.log('我就要开始渲染了。。。')
   },
-  componentDidMount: () => {
-    console.log('渲染完了');
+  componentDidMount: function() {
+    console.log('我已经渲染好了。。。')
   },
-  render: () => React.component(
-    "div", null, this.state.type, "Hello ", this.props.name
-  )
+  render: function() {
+    return React.createElement("div", null, this.state.type, "Hello ", this.props.name);
+  }
 });
 
-const Hello = React.component(
+// console.log(ele2);
+
+const Hello = React.createElement(
   ele2,
-  { name: 'Sakura' },
+  { name: 'Sakura', id: 'component' },
 );
 
 React.renderDOM(
