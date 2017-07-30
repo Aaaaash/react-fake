@@ -16,16 +16,6 @@ class React {
   }
 
   createClass (spec) {
-    // var Constructor = function (props) {
-    //   this.props = props;
-    //   this.state = this.getInitialState ? this.getInitialState() : null;
-    // }
-    // //原型继承，继承超级父类
-    // Constructor.prototype = new PureComponent();
-    // Constructor.prototype.constructor = Constructor;
-    // //混入spec到原型
-    // $.extend(Constructor.prototype,spec);
-    // return Constructor;
     class Constructor extends PureComponent {
       constructor(props) {
         super();
@@ -33,11 +23,7 @@ class React {
         this.state = this.getInitialState ? this.getInitialState() : null;
       }
     }
-    // Constructor.prototype = new PureComponent();
-    Constructor.prototype.constructor = Constructor;
     Object.assign(Constructor.prototype, spec);
-    // console.log(Object.assign(Constructor.prototype, spec));
-    // console.log(PureComponent.prototype);
     return Constructor;
   }
   createElement (type, config, children) {

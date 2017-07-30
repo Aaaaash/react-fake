@@ -29,7 +29,7 @@ const ele = React.createElement(
 
 const ele2 = React.createClass({
   getInitialState: function() {
-    return {type: 'say:'};
+    return {action: 'say:'};
   },
   componentWillMount: function() {
     console.log('我就要开始渲染了。。。')
@@ -38,11 +38,10 @@ const ele2 = React.createClass({
     console.log('我已经渲染好了。。。')
   },
   render: function() {
-    return React.createElement("div", null, this.state.type, "Hello ", this.props.name);
+    return React.createElement("div", null, this.state.action, "Hello ", this.props.name);
   }
 });
 
-// console.log(ele2);
 
 const Hello = React.createElement(
   ele2,
